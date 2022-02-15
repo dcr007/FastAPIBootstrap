@@ -6,12 +6,12 @@ This project will help to bootstrap a backend development environment with FastA
 You are encouraged to contribute to this project with your learning and pythonic best practices .
 
 ## Setup
-### Create you virtual environment
+### Creating virtual environment
 - Create folder where you want to have your virtual environment hosted:    ```mkdir ~/.virtualenvs/AzureFastApiServices```
 - Create virtual environment using the command :  ```virtualenv  ~/.virtualenvs/AzureFastApiServices```
 - Activate your virtual environment: ```source  ~/.virtualenvs/AzureFastApiServices/bin/activate```
 
-### Install dependencies
+### Installing dependencies
 - Install all your project dependencies into your virtual environment . From the root of your virtual environment folder execute   ```pip install -r requirements.txt```
   
 ### To Start the applicaiton 
