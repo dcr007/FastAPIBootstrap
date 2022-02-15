@@ -1,4 +1,4 @@
-# Bootstrap application to setup Fast API services with Azure Cosmos DB backend.
+# Bootstrap application to setup Fast API services with Azure Cosmos DB as backend.
 
 ## Background
 The aim is to bring together my learnings from python design patterns and setup a FastAPI service backed with cosmos DB. 
