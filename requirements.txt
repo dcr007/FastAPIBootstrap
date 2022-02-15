@@ -1,0 +1,22 @@
+##
+ # @author Chandu D
+ # @email chanduram.dowlathram@sap.com
+ # @create date 2022-02-15 11:42:36
+ # @modify date 2022-02-15 11:45:16
+ # @desc  To install the dependencies execute: pip install -r requirements.txt
+ # To upgrade the dependecies : pip-upgrade requirements.txt
+##
+# 
+azure-core==1.22.1
+azure-cosmos==4.2.0
+azure-mgmt-cosmosdb==6.4.0
+azure-mgmt-compute==25.0.0
+azure-servicebus==7.6.0
+fastapi[all]==0.73.0
+fastapi-utils==0.2.1
+jsonschema[format_nongpl]==4.4.0
+msal==1.17.0
+opencensus-ext-azure==1.1.1
+opencensus-ext-logging==0.1.1
+PyJWT==2.3.0
+uvicorn[standard]==0.17.4
