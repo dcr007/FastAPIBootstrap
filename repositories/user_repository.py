@@ -2,7 +2,7 @@
  # @author Chandu D
  # @email chanduram.dowlathram@sap.com
  # @create date 2022-02-15 11:49:38
- # @modify date 2022-02-15 11:49:39
+ # @modify date 2022-02-18 15:24:28
  # @desc [description]
 ##
 from ast import List
@@ -16,12 +16,12 @@ from db.events import DATABASE_ID,CONTAINER_ID
 from models.user_model import User
 from repositories.base_repository import BaseRepository
 
-PARTITION_KEY = PartitionKey(path="/userid")
+PARTITION_KEY = PartitionKey(path="/company/comp_id")
 
 class UserRepository(BaseRepository):
    
     def __init__(self,client:CosmosClient):
-       super().__init__(client,CONTAINER_ID)
+       super().__init__(client,CONTAINER_ID,PARTITION_KEY)
     
     
     def create_and_register_user(self,user_template:User)->dict:

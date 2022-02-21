@@ -138,3 +138,7 @@ dmypy.json
 dev.env
 visionone_role_manager.db
 /.vscode
+*.pyproj
+*.solutions
+*.sln
+.DS_Store

@@ -2,7 +2,7 @@
  # @author Chandu D
  # @email chanduram.dowlathram@sap.com
  # @create date 2022-02-15 11:50:57
- # @modify date 2022-02-15 11:51:00
+ # @modify date 2022-02-18 14:54:02
  # @desc [description]
 ##
 
@@ -18,18 +18,19 @@ PARTITION_KEY = PartitionKey(path="/id")
 DATABASE_ID = config.settings['database_id']
 
 class BaseRepository():
-   def __init__(self,client:CosmosClient,container_name:str = None)-> None:
+   def __init__(self,client:CosmosClient,container_name:str = None,partition_key:PartitionKey=None)-> None:
         self._client: CosmosClient = client
-        self._container: ContainerProxy = self._get_container(container_name)
+        self._container: ContainerProxy = self._get_container(container_name,partition_key)
+        self._partition_key:PartitionKey = partition_key
     
    @property
    def container(self) -> ContainerProxy:
         return self._container
 
-   def _get_container(self, container_name) -> ContainerProxy:
+   def _get_container(self, container_name,partition_key) -> ContainerProxy:
         try:
             database = self._client.get_database_client(DATABASE_ID)
-            container = database.create_container_if_not_exists(id=container_name, partition_key=PARTITION_KEY)
+            container = database.create_container_if_not_exists(id=container_name, partition_key=partition_key)
             properties = container.read()
             print(properties['partitionKey'])
             return container
