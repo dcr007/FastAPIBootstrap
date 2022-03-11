@@ -2,7 +2,7 @@
  # @author Chandu D
  # @email chanduram.dowlathram@sap.com
  # @create date 2022-02-15 11:50:57
- # @modify date 2022-02-18 14:54:02
+ # @modify date 2022-03-11 15:18:35
  # @desc [description]
 ##
 
@@ -10,9 +10,12 @@ from asyncio.log import logger
 from typing import Container
 from azure.cosmos import CosmosClient,PartitionKey,ContainerProxy
 from pydantic import BaseModel
-from db.errors import UnableToAccessDatabase
 from models.user_model import User
+from db.errors import UnableToAccessDatabase
+from xmlrpc.client import boolean
+from azure.cosmos.database import DatabaseProxy,ContainerProxy
 import resources.config as config
+import azure.cosmos.exceptions as exceptions
 
 PARTITION_KEY = PartitionKey(path="/id")
 DATABASE_ID = config.settings['database_id']
@@ -51,5 +54,27 @@ class BaseRepository():
 
    def delete_item(self, item_id: str):
         self.container.delete_item(item=item_id, partition_key=item_id)
+
+   def drop_container(db:DatabaseProxy, id:ContainerProxy)->boolean:
+    print("\n Executing Delete Container")
+
+    try:
+        db.delete_container(id)
+        print('Container with id \'{0}\' was deleted'.format(id))
+        return True
+
+    except exceptions.CosmosResourceNotFoundError:
+        print('A container with id \'{0}\' does not exist'.format(id))
+        return False
    
-   
+   def drop_database(db:DatabaseProxy, client:CosmosClient)->boolean:
+    print("\n Executing Delete Database")
+
+    try:
+        client.delete_database(db)
+        print('Database with id \'{0}\' was deleted'.format(db))
+        return True
+
+    except exceptions.CosmosResourceNotFoundError:
+        print('A Database with id \'{0}\' does not exist'.format(id))
+        return False

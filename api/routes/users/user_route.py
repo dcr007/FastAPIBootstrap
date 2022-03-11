@@ -2,7 +2,7 @@
  # @author Chandu D
  # @email chanduram.dowlathram@sap.com
  # @create date 2022-02-15 11:47:51
- # @modify date 2022-02-15 11:47:52
+ # @modify date 2022-02-22 22:59:51
  # @desc [description]
 ##
 
@@ -11,13 +11,13 @@ from api.dependencies.database import get_repository
 
 from models.user_model import User
 from repositories.user_repository import UserRepository
-
+from resources.config import logger
 
 router = APIRouter()
 
-
 @router.get("/getUsers", name="get list of users ")
 async def get_User() -> str:
+    logger.debug("This is debug stmt from getUsers")
     return 'all user list'
 
 @router.post("/registerUser", name="Saves a New users into DB",status_code=status.HTTP_201_CREATED,response_model=User)

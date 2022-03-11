@@ -2,7 +2,7 @@
  # @author Chandu D
  # @email chanduram.dowlathram@sap.com
  # @create date 2022-02-15 11:48:10
- # @modify date 2022-02-15 11:48:11
+ # @modify date 2022-02-22 19:58:46
  # @desc [description]
 ##
 
@@ -23,5 +23,4 @@ def create_start_app_handler(app: FastAPI) -> Callable:
 def create_stop_app_handler(app: FastAPI) -> Callable:
     async def stop_app() -> None:
         pass
-
     return stop_app
